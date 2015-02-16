@@ -27,9 +27,9 @@ function printChangeValueSpectrum($Spectrums,$endKomma)
 	$last = count($Spectrums) -1;
 	foreach($Spectrums as $Spectrum => $Attr)
 	{
-		$s .= "Math.floor(".$Spectrum."Val._r),";
-		$s .= "Math.floor(".$Spectrum."Val._g),";
-		$s .= "Math.floor(".$Spectrum."Val._b)";
+		$s .= "Math.floor(".$Spectrum."Val[0]),\r\n\t\t\t";
+		$s .= "Math.floor(".$Spectrum."Val[1]),\r\n\t\t\t";
+		$s .= "Math.floor(".$Spectrum."Val[2])\r";
 		if($last != 0) {
 			//not last item
 			$s.= ",\r\n\t\t\t";
@@ -63,7 +63,10 @@ function printInitSpectrum($Spectrums)
 				color: tinycolor(\"rgb (".$Attr["r"].",".$Attr["g"].",".$Attr["b"].")\"),
 				move: function(color) {
 					if(color){
-						".$Spectrum."Val = color;
+						".$Spectrum."Val[0] = color._r;
+						".$Spectrum."Val[1] = color._g;
+						".$Spectrum."Val[2] = color._b;
+						
 						changeValue();
 					}
 				}
