@@ -8,13 +8,14 @@
 	$Komma = array(
 		"slider"	=> 0,
 		"table" 	=> 1,
-		"spectrum" 	=> 0,	
+		"spectrum" 	=> 0,
 	);
 	$bsCols = array('lg'=>6,'md'=>6,'sm'=>6,'xs'=>12);
 	
 ?>
 
 <script>
+	var firstLoaded = 1;
 	var drawMode = 0;
 	<?php if(!empty($Spectrums)) echo printVarSpectrum($Spectrums); ?>
 	<?php if(!empty($Tables)) echo printVarTable($Tables); ?>
@@ -71,6 +72,10 @@
 	}
 	
 	function tableEvent(cell,x,y){
+		if(firstLoaded){
+			drawReset();
+			firstLoaded = 0;
+		}
 		cell.css('background-color',tinycolor({ r: colorVal[0], g: colorVal[1], b: colorVal[2]}));
 		pictureVal2[0] = pictureVal[0];
 		pictureVal2[1] = pictureVal[1];
@@ -89,7 +94,6 @@
 		<?php if(!empty($Tables)) echo printTableEventCall($Tables); ?>
 		
 		resize();
-		drawReset();
 		
 		$(window).resize(function(){
 			resize();
@@ -106,9 +110,13 @@
 	<?php if(!empty($Tables)) echo printTables($Tables,$bsCols); ?>
 		<div class="btn-group btn-group-lg" role="toolbar" aria-label="Tools">
 			<button id='drawPixel' type='button' class='btn btn-primary' onclick='setDrawPixel();'><img src="pic/glyphicons-31-pencil.png" height="30"></button>
+			<button id='fillColor' type='button' class='btn btn-default' onclick='setFillColor();'><img src="pic/glyphicons-481-bucket.png" height="30"></button>
+		</div>
+		<div class="btn-group btn-group-lg" role="toolbar" aria-label="Tools">
 			<button id='drawLine'  type='button' disabled="disabled" class='btn btn-default' onclick='setDrawLine();' ><img src="pic/glyphicons-98-vector-path-line.png" height="30"></button>
 			<button id='drawRect'  type='button' disabled="disabled" class='btn btn-default' onclick='setDrawRect();'><img src="pic/glyphicons-100-vector-path-all.png" height="30"></button>
-			<button id='fillColor' type='button' class='btn btn-default' onclick='setFillColor();'><img src="pic/glyphicons-481-bucket.png" height="30"></button>
+		</div>
+		<div class="btn-group btn-group-lg" role="toolbar" aria-label="Tools">
 			<button id='getColor' type='button' disabled="disabled" class='btn btn-default' onclick='setgetColor();'><img src="pic/glyphicons-91-eyedropper.png" height="30"></button>
 			<button type="button" class="btn btn-warning" onclick="drawReset();"><img src="pic/glyphicons-17-bin.png" height="30"></button>
 		</div>
