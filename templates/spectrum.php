@@ -13,10 +13,10 @@ function printVarSpectrum($Spectrums)
 function printResizeSpectrum($Spectrums)
 {
 	$s = "";
-    $s .= "$('.sp-picker-container').width(Math.min($('#item').width()-30 , 470));\r\n";
+    $s .= "$('.sp-picker-container').width(Math.min($('#item').width()-30 , 660));\r\n";
 	foreach ($Spectrums as $Spectrum => $Attr)
 	{
-		$s .= "$('#".$Spectrum."').spectrum('reflow');";
+		$s .= "$('#".$Spectrum."').spectrum('reflow');\r\n";
 	}
 	return $s;
 }
@@ -29,7 +29,7 @@ function printChangeValueSpectrum($Spectrums,$endKomma)
 	{
 		$s .= "Math.floor(".$Spectrum."Val[0]),\r\n\t\t\t";
 		$s .= "Math.floor(".$Spectrum."Val[1]),\r\n\t\t\t";
-		$s .= "Math.floor(".$Spectrum."Val[2])\r";
+		$s .= "Math.floor(".$Spectrum."Val[2])";
 		if($last != 0) {
 			//not last item
 			$s.= ",\r\n\t\t\t";
@@ -54,24 +54,26 @@ function printInitSpectrum($Spectrums)
 	$s = "";
 	foreach($Spectrums as $Spectrum => $Attr)
 	{
-	$s .= 	"
-			// ".$Spectrum."
-			$('#".$Spectrum."').spectrum({
-				flat: ".$Attr["flat"].",
-				showInput: ".$Attr["showInput"].",
-				showButtons: ".$Attr["showButtons"].",
-				color: tinycolor(\"rgb (".$Attr["r"].",".$Attr["g"].",".$Attr["b"].")\"),
-				move: function(color) {
-					if(color){
-						".$Spectrum."Val[0] = color._r;
-						".$Spectrum."Val[1] = color._g;
-						".$Spectrum."Val[2] = color._b;
-						
-						changeValue();
-					}
-				}
-			});
-			// /".$Spectrum."\r\n\t\t\t";
+	$s .= 	"\r\n";
+	$s .= 	"\r\n\t\t// ".$Spectrum;
+	$s .= 	"\r\n\t\t$('#".$Spectrum."').spectrum({";
+	$s .= 	"\r\n\t\t\tflat: ".$Attr["flat"].",";
+	$s .= 	"\r\n\t\t\tshowInput: ".$Attr["showInput"].",";
+	$s .= 	"\r\n\t\t\tshowButtons: ".$Attr["showButtons"].",";
+	$s .= 	"\r\n\t\t\tcolor: tinycolor(\"rgb (".$Attr["r"].",".$Attr["g"].",".$Attr["b"].")\"),";
+	$s .= 	"\r\n\t\t\tmove: function(color) {";
+	$s .= 	"\r\n\t\t\t\tif(color){";
+	$s .= 	"\r\n\t\t\t\t\t".$Spectrum."Val[0] = color._r;";
+	$s .= 	"\r\n\t\t\t\t\t".$Spectrum."Val[1] = color._g;";
+	$s .= 	"\r\n\t\t\t\t\t".$Spectrum."Val[2] = color._b;";
+	if(empty($Attr["noValueChange"]))
+	{
+		$s .= 	"\r\n\t\t\t\t\tchangeValue();";
+	}
+	$s .= 	"\r\n\t\t\t\t}";
+	$s .= 	"\r\n\t\t\t}";
+	$s .= 	"\r\n\t\t});";
+	$s .= 	"\r\n\t\t// /".$Spectrum."\r\n\t\t\t";
 	}	
 	return $s;
 }

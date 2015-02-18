@@ -13,7 +13,7 @@
 		"slider"	=> 1,	
 		"spectrum" 	=> 0,		
 	);
-	$bsCols = array('lg'=>6,'md'=>6,'sm'=>12,'xs'=>12);
+	$bsCols = array('lg'=>6,'md'=>6,'sm'=>6,'xs'=>12);
 	
 	include "templates/body.php";
 ?>

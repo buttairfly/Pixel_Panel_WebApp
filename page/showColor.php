@@ -1,6 +1,4 @@
 <?php
-	$Sliders = array(
-	);
 	$Spectrums = array(
 		"color" 	=> array("name" => "Color"			, "r" => 255, "g" =>   0, "b" => 0, "flat" => true, "showInput" => 0, "showButtons" => 0),
 	);

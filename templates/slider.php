@@ -2,7 +2,7 @@
 
 function printResizeSlider()
 {
-    return "$(\".slider\").width(Math.min($('#item').width()-60 , 440));\r\n";
+    return "$(\".slider\").width(Math.min($('#item').width()-60 , 640));\r\n";
 }
 
 function printChangeValueSlider($Sliders,$endKomma)
@@ -59,7 +59,7 @@ function printDivSlider($Sliders,$bsCols)
 	foreach($Sliders as $Slider => $Attr)
 	{
 	$s .= "
-	<div id='item' class='col-lg-".$bsCols["lg"]." col-md-".$bsCols["md"]." col-sm-".$bsCols["sm"]." col-xs-".$bsCols["xs"]." text-center'>
+	<div id='item' class='col-lg-".$bsCols["lg"]." col-md-".$bsCols["md"]." col-sm-".$bsCols["sm"]." col-xs-".$bsCols["xs"]." text-center' style='margin-bottom:20px;'>
 		<h4>".$Attr["name"]."</h4>
 		<input type='text' id='".$Slider."'>
 	</div>\r\n";

@@ -22,6 +22,11 @@ function showColor(r,g,b){
 	sendSpecialCmd(0x80,0x01,0x01,parameter);
 }
 
+function setPixel(x,y,r,g,b){
+	var parameter = [x,y,r,g,b];
+	sendSpecialCmd(0x80,0x01,0x02,parameter);
+}
+
 function pulseColor(skipFrame,delta,r,g,b){
 	var parameter = [skipFrame,delta,r,g,b];
 	sendSpecialCmd(0x80,0x03,0x04,parameter);
@@ -61,6 +66,8 @@ function fallingPixel(skipFrame,num,length,direction,diff,r,g,b){
 	var parameter = [skipFrame,num,length,direction,diff,r,g,b];
 	sendSpecialCmd(0x80,0x03,0x08,parameter);
 }
+
+
 
 function sysReboot(){
 	

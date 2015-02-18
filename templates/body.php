@@ -1,10 +1,10 @@
 
 <script>
-	<?php echo printVarSpectrum($Spectrums) ?>
+	<?php if(!empty($Spectrums)) echo printVarSpectrum($Spectrums); ?>
 	
 	function resize(){
-		<?php echo printResizeSlider(); ?>
-		<?php echo printResizeSpectrum($Spectrums); ?>
+		<?php if(!empty($Sliders)) echo printResizeSlider(); ?>
+		<?php if(!empty($Spectrums)) echo printResizeSpectrum($Spectrums); ?>
 	}
 	
 	function changeValue(){
@@ -16,15 +16,15 @@
 		{
 			echo $_REQUEST['Site'];
 		}?>(
-			<?php echo printChangeValueSlider($Sliders,$Komma["slider"]); ?>
-			<?php echo printChangeValueSpectrum($Spectrums,$Komma["spectrum"]); ?>
+			<?php if(!empty($Sliders)) echo printChangeValueSlider($Sliders,$Komma["slider"]); ?>
+			<?php if(!empty($Spectrums)) echo printChangeValueSpectrum($Spectrums,$Komma["spectrum"]); ?>
 		);
 	}
 	
 	$(document).ready(function() {
 		
-		<?php echo printInitSlider($Sliders); ?>
-		<?php echo printInitSpectrum($Spectrums); ?>
+		<?php if(!empty($Sliders)) echo printInitSlider($Sliders); ?>
+		<?php if(!empty($Spectrums)) echo printInitSpectrum($Spectrums); ?>
 		
 		resize();
 		
@@ -34,6 +34,6 @@
 	});
  </script>
 <div class="row text-center">
-	<?php echo printDivSpectrum($Spectrums,$bsCols); ?>
-	<?php echo printDivSlider($Sliders,$bsCols); ?>
+	<?php if(!empty($Spectrums)) echo printDivSpectrum($Spectrums,$bsCols); ?>
+	<?php if(!empty($Sliders)) echo printDivSlider($Sliders,$bsCols); ?>
 </div>

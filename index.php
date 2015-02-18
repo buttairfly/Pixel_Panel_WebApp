@@ -3,6 +3,7 @@ ini_set('display_errors', 1);
 
 include "templates/slider.php";
 include "templates/spectrum.php";
+include "templates/tableDrawer.php";
 
 $DefaultSite = "showColor";
 
@@ -38,6 +39,11 @@ $Menus = array(
 $Colors = array(
 	"color1" 		=> array("r"=> 255,"g"=>   0,"b" =>   0),
 	"color2" 		=> array("r"=>   0,"g"=>   0,"b" =>   0),
+);
+
+$Dimension = array(
+	"width"	=> 20,
+	"height"=> 10,
 );
 
 include "templates/template.php";

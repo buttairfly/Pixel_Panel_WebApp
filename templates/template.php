@@ -39,9 +39,9 @@
 	include "templates/nav.php";
 ?>
 	</div><!-- /nav -->
-	<div class="container-fluid page-header text-center" style="margin-top:70px">
-		<div onclick="changeValue()" style="cursor: pointer;">
-			<h1><?php 
+	<div class="container-fluid page-header text-center" style="margin-top:70px;">
+		<div onclick="changeValue()" style="cursor: pointer;"><h1><span class="label label-primary">
+			<?php 
 				if(empty($_REQUEST['Site']))
 				{
 					echo $Menus[$DefaultSite]['menu'];
@@ -50,10 +50,10 @@
 				{
 					echo $Menus[$_REQUEST['Site']]['menu'];
 				}
-			?></h1>
+			?></span></h1>
 		</div>
 	</div>
-	<div id="wrapper" class="container-fluid"><!-- wrapper -->
+	<div id="wrapper" class="container-fluid" style="margin-bottom:20px;"><!-- wrapper -->
 
 
 <?php
