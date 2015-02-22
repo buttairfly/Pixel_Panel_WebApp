@@ -27,6 +27,16 @@ function setPixel(x,y,r,g,b){
 	sendSpecialCmd(0x80,0x01,0x02,parameter);
 }
 
+function setLine(x1,y1,x2,y2,r,g,b){
+	var parameter = [x1,y1,x2,y2,r,g,b];
+	sendSpecialCmd(0x80,0x01,0x03,parameter);
+}
+
+function setRect(x1,y1,x2,y2,r,g,b){
+	var parameter = [x1,y1,x2,y2,r,g,b];
+	sendSpecialCmd(0x80,0x01,0x04,parameter);
+}
+
 function pulseColor(skipFrame,delta,r,g,b){
 	var parameter = [skipFrame,delta,r,g,b];
 	sendSpecialCmd(0x80,0x03,0x04,parameter);

@@ -27,9 +27,9 @@ function printChangeValueSpectrum($Spectrums,$endKomma)
 	$last = count($Spectrums) -1;
 	foreach($Spectrums as $Spectrum => $Attr)
 	{
-		$s .= "Math.floor(".$Spectrum."Val[0]),\r\n\t\t\t";
-		$s .= "Math.floor(".$Spectrum."Val[1]),\r\n\t\t\t";
-		$s .= "Math.floor(".$Spectrum."Val[2])";
+		$s .= $Spectrum."Val[0],\r\n\t\t\t";
+		$s .= $Spectrum."Val[1],\r\n\t\t\t";
+		$s .= $Spectrum."Val[2]";
 		if($last != 0) {
 			//not last item
 			$s.= ",\r\n\t\t\t";
@@ -60,12 +60,12 @@ function printInitSpectrum($Spectrums)
 	$s .= 	"\r\n\t\t\tflat: ".$Attr["flat"].",";
 	$s .= 	"\r\n\t\t\tshowInput: ".$Attr["showInput"].",";
 	$s .= 	"\r\n\t\t\tshowButtons: ".$Attr["showButtons"].",";
-	$s .= 	"\r\n\t\t\tcolor: tinycolor(\"rgb (".$Attr["r"].",".$Attr["g"].",".$Attr["b"].")\"),";
+	$s .= 	"\r\n\t\t\tcolor: tinycolor({ r: ".$Spectrum."Val[0], g: ".$Spectrum."Val[1], b: ".$Spectrum."Val[2]}),";
 	$s .= 	"\r\n\t\t\tmove: function(color) {";
 	$s .= 	"\r\n\t\t\t\tif(color){";
-	$s .= 	"\r\n\t\t\t\t\t".$Spectrum."Val[0] = color._r;";
-	$s .= 	"\r\n\t\t\t\t\t".$Spectrum."Val[1] = color._g;";
-	$s .= 	"\r\n\t\t\t\t\t".$Spectrum."Val[2] = color._b;";
+	$s .= 	"\r\n\t\t\t\t\t".$Spectrum."Val[0] = Math.round(color._r);";
+	$s .= 	"\r\n\t\t\t\t\t".$Spectrum."Val[1] = Math.round(color._g);";
+	$s .= 	"\r\n\t\t\t\t\t".$Spectrum."Val[2] = Math.round(color._b);";
 	if(empty($Attr["noValueChange"]))
 	{
 		$s .= 	"\r\n\t\t\t\t\tchangeValue();";

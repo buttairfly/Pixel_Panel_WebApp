@@ -1,5 +1,6 @@
 <?php
 
+
 function printVarTable($Tables){
 	$s = "";
 	
@@ -13,32 +14,43 @@ function printVarTable($Tables){
 	return $s;
 }
 
-function printResizeTable(){
+function printResizeTable($Tables){
 	$s = "";
-	$s .= "\r\n\t\t$('.tablecell').width (Math.min($('#item').width() -60 , 32));";
-	$s .= "\r\n\t\t$('.tablecell').height($('.tablecell').width());\r\n";
+	foreach($Tables as $Table => $Attr){
+		$s .= "\r\n\t\t$('.".$Table."Cell').width (Math.min($('#item').width() -60 , 32));";
+		$s .= "\r\n\t\t$('.".$Table."Cell').height($('.".$Table."Cell').width());\r\n";
+	}
 	return $s;
 }
 
+
+
 function printTables($Tables,$bsCols){
 	$s = "";
-	$s .= "<style>.noselect {
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	}</style>";
+	$s .= "<style>
+	.noselect {
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+	.nopadding {
+		font-size: 0px;
+		padding: 0px;
+		margin: 0px;
+	}
+	</style>";
 	
 	foreach($Tables as $Table => $Attr){
 		$s .= "<div id='item' class='col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center' style='margin-bottom:20px;'>\r\n";
 		$s .= "<h4>".$Attr["name"]."</h4>\r\n";
-		$s .= "<table id='".$Table."' border='solid'>\r\n";
+		$s .= "<table id='".$Table."' style='border-collapse: separate; margin: 0 auto 0 auto;'>\r\n";
 		for($y = 0; $y < $Attr["height"]; $y++){
 			$s .= "\t<tr>\r\n";
 			for($x = 0; $x < $Attr["width"]; $x++){
-				$s .= "\t\t<td class='tablecell noselect' style='cursor: pointer; background-color:black;'>&nbsp;</td>\r\n";
+				$s .= "\t\t<td class='".$Table."Cell noselect nopadding' style='cursor: pointer; border:1px solid #505050; background-color:black;'>&nbsp;</td>\r\n";
 			}
 			$s .= "\t</tr>\r\n";
 		}
@@ -69,6 +81,7 @@ function printTableEventCall(){
 	$s .= "\t\t});";
 	return $s;
 }
+
 
 function printChangeValueTable($Tables,$endKomma){
 	$s = "\r\n";

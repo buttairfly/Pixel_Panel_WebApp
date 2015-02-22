@@ -2,7 +2,7 @@
 	$Sliders = array(
 		"skipframe" 	=> array("name" => "Skip Frame"			, "min" => 0, "max" =>  20, "step" => 1, "value" =>   2),
 		"antialiasing" 	=> array("name" => "Anti-Aliasing"		, "min" => 0, "max" =>   0, "step" => 1, "value" =>   0),
-		"width"			=> array("name" => "Width"				, "min" => 1, "max" => 	10, "step" => 1, "value" =>   1),
+		"width"			=> array("name" => "Width"				, "min" => 1, "max" => 	 1, "step" => 1, "value" =>   1),
 		"px"			=> array("name" => "P_x"				, "min" => 1, "max" =>   1, "step" => 0, "value" =>   1),
 		"py"			=> array("name" => "P_y"				, "min" => 1, "max" =>   1, "step" => 0, "value" =>   1),
 	);
