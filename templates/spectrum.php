@@ -62,15 +62,26 @@ function printInitSpectrum($Spectrums)
 	$s .= 	"\r\n\t\t\tshowButtons: ".$Attr["showButtons"].",";
 	$s .= 	"\r\n\t\t\tcolor: tinycolor({ r: ".$Spectrum."Val[0], g: ".$Spectrum."Val[1], b: ".$Spectrum."Val[2]}),";
 	$s .= 	"\r\n\t\t\tmove: function(color) {";
-	$s .= 	"\r\n\t\t\t\tif(color){";
+	$s .= 	"\r\n\t\t\t\tvar valHasChanged = 0;";
+	$s .= 	"\r\n\t\t\t\tif(".$Spectrum."Val[0] != Math.round(color._r)){";
 	$s .= 	"\r\n\t\t\t\t\t".$Spectrum."Val[0] = Math.round(color._r);";
+	$s .= 	"\r\n\t\t\t\t\tvar valHasChanged = 1;";
+	$s .= 	"\r\n\t\t\t\t}";
+	$s .= 	"\r\n\t\t\t\tif(".$Spectrum."Val[1] != Math.round(color._g)){";
 	$s .= 	"\r\n\t\t\t\t\t".$Spectrum."Val[1] = Math.round(color._g);";
+	$s .= 	"\r\n\t\t\t\t\tvar valHasChanged = 1;";
+	$s .= 	"\r\n\t\t\t\t}";
+	$s .= 	"\r\n\t\t\t\tif(".$Spectrum."Val[2] != Math.round(color._b)){";
 	$s .= 	"\r\n\t\t\t\t\t".$Spectrum."Val[2] = Math.round(color._b);";
+	$s .= 	"\r\n\t\t\t\t\tvar valHasChanged = 1;";
+	$s .= 	"\r\n\t\t\t\t}";
 	if(empty($Attr["noValueChange"]))
 	{
+		$s .= 	"\r\n\t\t\t\tif(valHasChanged){";
 		$s .= 	"\r\n\t\t\t\t\tchangeValue();";
+		$s .= 	"\r\n\t\t\t\t}";
+		
 	}
-	$s .= 	"\r\n\t\t\t\t}";
 	$s .= 	"\r\n\t\t\t}";
 	$s .= 	"\r\n\t\t});";
 	$s .= 	"\r\n\t\t// /".$Spectrum."\r\n\t\t\t";
