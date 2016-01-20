@@ -1,6 +1,7 @@
 
 <script>
 	<?php if(!empty($Spectrums)) echo printVarSpectrum($Spectrums); ?>
+	<?php if(!empty($Sliders)) echo printVarSlider($Sliders); ?>
 	
 	function resize(){
 		<?php if(!empty($Sliders)) echo printResizeSlider(); ?>

@@ -1,5 +1,16 @@
 <?php
 
+function printVarSlider($Sliders)
+{
+	$s = "";
+	foreach($Sliders as $Slider => $Attr)
+	{
+		$s .= "var ".$Slider."Val = ".$Attr["value"].";\r\n\t";
+	}
+	return $s;
+}
+
+
 function printResizeSlider()
 {
     return "$(\".slider\").width(Math.min($('#item').width()-60 , 640));\r\n";
@@ -42,12 +53,23 @@ function printInitSlider($Sliders)
 			min: ".$Attr["min"].",
 			max: ".$Attr["max"].",
 			step: ".$Attr["step"].",
-			value: ".$Attr["value"].",
+			value: ".$Slider."Val,
 			});
 			$('#".$Slider."').slider()
-			.on('slide', function(ev){
-				changeValue();					
-			});
+			.on('slide', function(ev){";
+	$s .= 	"\r\n\t\t\t\tvar valHasChanged = 0;";
+	$s .= 	"\r\n\t\t\t\tif((".$Slider."Val != $('#".$Slider."').slider().data('slider').getValue()) && !isNaN($('#".$Slider."').slider().data('slider').getValue())){";
+	$s .= 	"\r\n\t\t\t\t\t".$Slider."Val = $('#".$Slider."').slider().data('slider').getValue();";
+	$s .= 	"\r\n\t\t\t\t\tvar valHasChanged = 1;";
+	$s .= 	"\r\n\t\t\t\t}";
+	if(empty($Attr["noValueChange"]))
+	{
+		$s .= 	"\r\n\t\t\t\tif(valHasChanged){";
+		$s .= 	"\r\n\t\t\t\t\tchangeValue();";
+		$s .= 	"\r\n\t\t\t\t}";
+		
+	}			
+		$s .= 	"\r\n\t\t\t});
 			// /".$Slider."\r\n";
 	}
 	return $s;
