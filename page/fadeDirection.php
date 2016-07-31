@@ -6,6 +6,9 @@
 		"dimmer"		=> array("name" => "Color Dimmer"		, "min" => 0, "max" => 255, "step" => 1, "value" => 255),
 		"saturation"	=> array("name" => "Color Saturation"	, "min" => 0, "max" => 255, "step" => 1, "value" =>   0),
 	);
+	$Spectrums = array(
+		"color" 	=> array("name" => "Color" , "r" => 255, "g" =>   0, "b" => 0, "flat" => true, "showInput" => 0, "showButtons" => 0),
+	);
 	$Komma = array(
 		"slider"	=> 0,	
 		"spectrum" 	=> 0,		

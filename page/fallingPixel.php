@@ -7,10 +7,10 @@
 		"dropDiff"		=> array("name" => "Differentiation"	, "min" => 1, "max" =>  20, "step" => 1, "value" =>   10),
 	);
 	$Spectrums = array(
-		"pixelColor" 	=> array("name" => "Pixel Color"			, "r" => 255, "g" =>   0, "b" => 0, "flat" => true, "showInput" => 0, "showButtons" => 0),
+		"color" 	=> array("name" => "Color" , "r" => 255, "g" =>   0, "b" => 0, "flat" => true, "showInput" => 0, "showButtons" => 0),
 	);
 	$Komma = array(
-		"slider"	=> 1,	
+		"slider"	=> 0,	
 		"spectrum" 	=> 0,		
 	);
 	$bsCols = array('lg'=>6,'md'=>6,'sm'=>6,'xs'=>12);

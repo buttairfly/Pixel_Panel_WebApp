@@ -49,6 +49,7 @@ function printChangeValueSpectrum($Spectrums,$endKomma)
 	}
 	return $s;
 }
+
 function printInitSpectrum($Spectrums)
 {
 	$s = "";
@@ -78,7 +79,7 @@ function printInitSpectrum($Spectrums)
 	if(empty($Attr["noValueChange"]))
 	{
 		$s .= 	"\r\n\t\t\t\tif(valHasChanged){";
-		$s .= 	"\r\n\t\t\t\t\tchangeValue();";
+		$s .= 	"\r\n\t\t\t\t\tpaletteUpdateColor();";
 		$s .= 	"\r\n\t\t\t\t}";
 		
 	}

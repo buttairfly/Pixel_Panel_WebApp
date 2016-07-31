@@ -15,11 +15,34 @@
 		}
 		else 
 		{
-			echo $_REQUEST['Site'];
+			echo $_REQUEST['Site'];//call function like the sites name
 		}?>(
 			<?php if(!empty($Sliders)) echo printChangeValueSlider($Sliders,$Komma["slider"]); ?>
+		);
+	}
+	
+	function paletteUpdateColor()
+	{
+		paletteUpdate(
 			<?php if(!empty($Spectrums)) echo printChangeValueSpectrum($Spectrums,$Komma["spectrum"]); ?>
 		);
+	}
+	
+	function paletteAppendColor()
+	{
+		/*
+		array_push( $Palette, array(
+			<?php if(!empty($Spectrums)) echo printChangeValueSpectrum($Spectrums,$Komma["spectrum"]); ?>
+		));
+		*/
+		paletteAppend(
+			<?php if(!empty($Spectrums)) echo printChangeValueSpectrum($Spectrums,$Komma["spectrum"]); ?>
+		);
+	}
+
+	function paletteClearColor()
+	{
+		paletteClear();
 	}
 	
 	$(document).ready(function() {
@@ -31,10 +54,15 @@
 		
 		$(window).resize(function(){
 			resize();
-		});			
+		});
 	});
  </script>
 <div class="row text-center">
-	<?php if(!empty($Spectrums)) echo printDivSpectrum($Spectrums,$bsCols); ?>
+	<?php if(!empty($Spectrums)) {
+		echo printDivSpectrum($Spectrums,$bsCols); 
+		echo printPaletteButtons();
+		echo printPaletteColors();
+	}
+	?>
 	<?php if(!empty($Sliders)) echo printDivSlider($Sliders,$bsCols); ?>
 </div>

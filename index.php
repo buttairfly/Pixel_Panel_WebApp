@@ -3,6 +3,7 @@ ini_set('display_errors', 1);
 
 include "templates/slider.php";
 include "templates/spectrum.php";
+include "templates/palette.php";
 include "templates/tableDrawer.php";
 
 $DefaultSite = "showColor";
@@ -32,11 +33,13 @@ $Menus = array(
 	"divider2" 		=> array("menu" => "#",					"parent" => "animation", 		                        ),
 	"fadePixel" 	=> array("menu" => "Fade Pixel",		"parent" => "animation", "page" => "fadePixel.php",		),
 	"fallingPixel" 	=> array("menu" => "Falling Pixel",		"parent" => "animation", "page" => "fallingPixel.php",	),
+	"plasma"	 	=> array("menu" => "Plasma",			"parent" => "animation", "page" => "plasma.php",		),
 	//Games
 	"snake" 		=> array("menu" => "Snake",             "parent" => "games",	 "page" => "snake.php",			),
 );
 
 $Colors = array(
+    "color" 		=> array("r"=> 255,"g"=>   0,"b" =>   0),
 	"color1" 		=> array("r"=> 255,"g"=>   0,"b" =>   0),
 	"color2" 		=> array("r"=>   0,"g"=>   0,"b" =>   0),
 );

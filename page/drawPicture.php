@@ -1,13 +1,13 @@
 <?php
 	$Spectrums = array(
-		"color" 	=> array("name" => "Brush Color"			, "r" => 255, "g" =>   0, "b" => 0, "flat" => 1, "showInput" => 0, "showButtons" => 0, "noValueChange" => 1),
+		"color" 	=> array("name" => "Color" , "r" => 255, "g" =>   0, "b" => 0, "flat" => true, "showInput" => 0, "showButtons" => 0),
 	);
 	$Tables = array(
 		"picture" 	=> array("name" => "Picture"	, "width" => $Dimension['width'], "height" => $Dimension['height'], "spectrum" => "color"),
 	);
 	$Komma = array(
 		"slider"	=> 0,
-		"table" 	=> 1,
+		"table" 	=> 0,
 		"spectrum" 	=> 0,
 	);
 	$bsCols = array('lg'=>6,'md'=>6,'sm'=>6,'xs'=>12);
@@ -92,19 +92,19 @@
 		$('td').css('background-color',tinycolor({ r: 0, g: 0, b: 0}));
 	}
 	function fillColor(){
-		showColor(colorVal[0],colorVal[1],colorVal[2]);
+		showColor(<?php if(!empty($Spectrums)) echo printChangeValueSpectrum($Spectrums,$Komma["spectrum"]); ?>);
 		$('td').css('background-color',tinycolor({ r: colorVal[0], g: colorVal[1], b: colorVal[2]}));
 	}
 	function drawPixel(cell){
 		cell.css('background-color',tinycolor({ r: colorVal[0], g: colorVal[1], b: colorVal[2]}));
 		setPixel(
-			<?php if(!empty($Spectrums)) echo printChangeValueTable($Tables,$Komma["table"]); ?>
+			<?php if(!empty($Spectrums)) echo printChangeValueTable($Tables,$Komma["table"]); ?>,
 			<?php if(!empty($Spectrums)) echo printChangeValueSpectrum($Spectrums,$Komma["spectrum"]); ?>
 		);
 	}
 	
 	function changeValue(){
-		
+		//empty
 	}
 	
 	function drawRect(){
@@ -121,9 +121,9 @@
 				
 				var y0 = Math.min(pictureVal[1], pictureVal2[1]);
 				var y1 = Math.max(pictureVal[1], pictureVal2[1]);
+				
 				setRect(
-					x0,y0,x1,y1,
-					<?php if(!empty($Spectrums)) echo printChangeValueSpectrum($Spectrums,$Komma["spectrum"]); ?>
+					x0,y0,x1,y1, <?php if(!empty($Spectrums)) echo printChangeValueSpectrum($Spectrums,$Komma["spectrum"]); ?>
 				);
 				for(var y = y0; y <= y1; y++)
 				for(var x = x0; x <= x1; x++)
@@ -144,9 +144,8 @@
 			if(twoPointActive == 2){
 				$("#drawLine").removeClass( "btn-success" ).addClass( "btn-primary" );
 				twoPointActive = 1;
-				
 				setLine(
-					<?php if(!empty($Spectrums)) echo printChangeValueTable($Tables,$Komma["table"]); ?>
+					<?php if(!empty($Spectrums)) echo printChangeValueTable($Tables,$Komma["table"]); ?>,
 					pictureVal2[0],
 					pictureVal2[1],
 					<?php if(!empty($Spectrums)) echo printChangeValueSpectrum($Spectrums,$Komma["spectrum"]); ?>
@@ -182,9 +181,7 @@
 					if (e2 < dx) { err += dx; y0 += sy; } /* e_xy+e_y < 0 */
 				}
 			}
-
 		}
-		
 	}
 	
 	function getColor(cell){
@@ -195,7 +192,7 @@
 		colorVal[2] = parseInt(ci[3]);
 		
 		<?php  if(!empty($Spectrums)) echo printInitSpectrum($Spectrums); ?>		
-		resize();		
+		resize();
 		drawMode = beforeEyedropper;
 		switch(beforeEyedropper){
 			case 0: setDrawPixel(); break;
@@ -224,6 +221,10 @@
 			case  4: getColor(cell);  break;
 			default: drawPixel(cell); break;
 		}
+	}
+	
+	function paletteUpdateColor()
+	{
 	}
 	
 	$(document).ready(function() {
@@ -255,5 +256,9 @@
 		
 	</div>
 	
-			<?php if(!empty($Spectrums)) echo printDivSpectrum($Spectrums,$bsCols); ?>
+	<?php if(!empty($Spectrums)) {
+		echo printDivSpectrum($Spectrums,$bsCols);
+		echo printPaletteColors();
+	}
+	?>
 </div>

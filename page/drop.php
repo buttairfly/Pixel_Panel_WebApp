@@ -5,11 +5,10 @@
 		"width"			=> array("name" => "Width"				, "min" => 1, "max" => 	 1, "step" => 1, "value" =>   1),
 	);
 	$Spectrums = array(
-		"dropColor" 	=> array("name" => "Drop Color"			, "r" => 255, "g" =>   0, "b" => 0, "flat" => true, "showInput" => 0, "showButtons" => 0),
-		"background" 	=> array("name" => "Background Color"	, "r" =>   0, "g" =>   0, "b" => 0, "flat" => true, "showInput" => 0, "showButtons" => 0),
+		"color" 	=> array("name" => "Color" , "r" => 255, "g" =>   0, "b" => 0, "flat" => true, "showInput" => 0, "showButtons" => 0),
 	);
 	$Komma = array(
-		"slider"	=> 1,	
+		"slider"	=> 0,	
 		"spectrum" 	=> 0,		
 	);
 	$bsCols = array('lg'=>4,'md'=>6,'sm'=>6,'xs'=>12);

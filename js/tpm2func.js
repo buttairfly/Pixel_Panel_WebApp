@@ -17,6 +17,7 @@ function sendSpecialCmd(ctl,splCmd,subCmd,parameter){
 	});
 }
 
+//draw
 function showColor(r,g,b){
 	var parameter = [r,g,b];
 	sendSpecialCmd(0x80,0x01,0x01,parameter);
@@ -37,14 +38,15 @@ function setRect(x1,y1,x2,y2,r,g,b){
 	sendSpecialCmd(0x80,0x01,0x04,parameter);
 }
 
-function pulseColor(skipFrame,delta,r,g,b){
-	var parameter = [skipFrame,delta,r,g,b];
-	sendSpecialCmd(0x80,0x03,0x04,parameter);
+function setCirc(x1,y1,r,r,g,b){
+	var parameter = [x1,y1,x2,r,g,b];
+	sendSpecialCmd(0x80,0x01,0x05,parameter);
 }
 
-function fadeScreen(skipFrame,delta,dimmer,saturation){
-	var parameter = [skipFrame,delta,dimmer,saturation];
-	sendSpecialCmd(0x80,0x03,0x03,parameter);
+//ani
+function invader(skipFrame,dimmer,saturation){
+	var parameter = [skipFrame,dimmer,saturation];
+	sendSpecialCmd(0x80,0x03,0x01,parameter);
 }
 
 function fadeDirection(skipFrame,delta,direction,dimmer,saturation){
@@ -52,37 +54,60 @@ function fadeDirection(skipFrame,delta,direction,dimmer,saturation){
 	sendSpecialCmd(0x80,0x03,0x02,parameter);
 }
 
-function invader(skipFrame,dimmer,saturation){
-	var parameter = [skipFrame,dimmer,saturation];
-	sendSpecialCmd(0x80,0x03,0x01,parameter);
+function fadeScreen(skipFrame,delta,dimmer,saturation){
+	var parameter = [skipFrame,delta,dimmer,saturation];
+	sendSpecialCmd(0x80,0x03,0x03,parameter);
 }
 
-function rotor(skipFrame,antiAliasing,width,px,py,r,g,b,br,bg,bb){
-	var parameter = [skipFrame,antiAliasing,width,px,py,r,g,b,br,bg,bb];
+function pulseColor(skipFrame,delta/*,r,g,b*/){
+	var parameter = [skipFrame,delta/*,r,g,b*/];
+	sendSpecialCmd(0x80,0x03,0x04,parameter);
+}
+
+function rotor(skipFrame,antiAliasing,width,px,py/*,r,g,b,br,bg,bb*/){
+	var parameter = [skipFrame,antiAliasing,width,px,py/*,r,g,b,br,bg,bb*/];
 	sendSpecialCmd(0x80,0x03,0x05,parameter);
 }
 
-function drop(skipFrame,antiAliasing,width,r,g,b,br,bg,bb){
-	var parameter = [skipFrame,antiAliasing,width,r,g,b,br,bg,bb];
+function drop(skipFrame,antiAliasing,width/*,r,g,b,br,bg,bb*/){
+	var parameter = [skipFrame,antiAliasing,width/*,r,g,b,br,bg,bb*/];
 	sendSpecialCmd(0x80,0x03,0x06,parameter);
 }
 
-function fadePixel(skipFrame,num,speed,r,g,b){
-	var parameter = [skipFrame,0x0,num,speed,r,g,b];
+function fadePixel(skipFrame,num,speed/*,r,g,b*/){
+	var parameter = [skipFrame,0x0,num,speed/*,r,g,b*/];
 	sendSpecialCmd(0x80,0x03,0x07,parameter);
 }
 
-function fallingPixel(skipFrame,num,length,direction,diff,r,g,b){
-	var parameter = [skipFrame,num,length,direction,diff,r,g,b];
+function fallingPixel(skipFrame,num,length,direction,diff/*,r,g,b*/){
+	var parameter = [skipFrame,num,length,direction,diff/*,r,g,b*/];
 	sendSpecialCmd(0x80,0x03,0x08,parameter);
 }
 
+function plasma(skipFrame,dimmer,saturation){
+	var parameter = [skipFrame,dimmer,saturation];
+	sendSpecialCmd(0x80,0x03,0x09,parameter);
+}
 
+function paletteClear(){
+	sendSpecialCmd(0x80,0x06,0x01,[]);
+}
 
-function sysReboot(){
-	
+function paletteAppend(r,g,b){
+	var parameter = [r,g,b];
+	sendSpecialCmd(0x80,0x06,0x02,parameter);
+}
+
+function paletteUpdate(r,g,b){
+	var parameter = [r,g,b];
+	sendSpecialCmd(0x80,0x06,0x03,parameter);
 }
 
 function sysShutdown(){
-	
+	endSpecialCmd(0x80,0xFE,0x01,[]);
+}
+
+function sysReboot(){
+	var parameter = [];
+	sendSpecialCmd(0x80,0xFE,0x02,[]);
 }
